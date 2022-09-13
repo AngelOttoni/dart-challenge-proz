@@ -1,58 +1,57 @@
-import 'dart:ffi';
-
-import 'package:uuid/uuid.dart';
+//import 'dart:ffi';
 
 int calculate() {
   return 6 * 7;
 }
 
-abstract class Person {
-  late String street;
-  late String number;
-  late String complement;
-  late String district;
-  late String state;
-  late String cep;
-  Person(this.street, this.number, this.complement, this.district, this.state,
-      this.cep);
-}
+// class Address {
+//   late String street;
+//   late String number;
+//   late String complement;
+//   late String district;
+//   late String state;
+//   late String cep;
+//   Address(
+//       {required this.street,
+//       required this.number,
+//       required this.complement,
+//       required this.district,
+//       required this.state,
+//       required this.cep});
+// }
 
-//Pessoa Física
-class NaturalPerson extends Person {
-  String cpf;
-  String fullName;
-
-  NaturalPerson(
-      this.cpf, this.fullName, street, number, complement, district, state, cep)
-      : super(street, number, complement, district, state, cep);
-}
-
-//Pessoa Jurídica
-class LegalPerson extends Person {
-  String cnpj;
-  //Razão Social
-  String corporateName;
-  //Nome Fantasia
-  String tradeName;
-
-  LegalPerson(this.cnpj, this.corporateName, this.tradeName, street, number,
-      complement, district, state, cep)
-      : super(street, number, complement, district, state, cep);
-}
-
-class Company extends LegalPerson {
-  final id = Uuid().v4();
-  final registrationDate = DateTime.now();
-  String phone;
-  Company(cnpj, corporateName, tradeName, this.phone, street, number,
-      complement, district, state, cep)
-      : super(cnpj, corporateName, tradeName, street, number, complement,
-            district, state, cep);
+// abstract class Partner {
+//   late String cpf;
+//   late String fullName;
+//   late String cnpj;
+//   //Razão Social
+//   late String corporateName;
+//   //Nome Fantasia
+//   late String tradeName;
+//   late Address address;
   
-  void newCompany(){}
-  void searchCompanyCnpj(){}
-  void searchCompanyMemberCpfCnpj(){}
-  void listCompanies(){}
-  void delCompanyId(){}
+// }
 
-}
+// //Pessoa Física
+// class NaturalPerson extends Partner {
+//   NaturalPerson(cpf, fullName, address);
+// }
+
+// //Pessoa Jurídica
+// class LegalPerson extends Partner {
+//   LegalPerson(cnpj, corporateName, tradeName, address);
+// }
+
+// class Company extends LegalPerson {
+//   final id = Uuid().v4();
+//   final registrationDate = DateTime.now();
+//   String phone;
+//   Company(cnpj, corporateName, tradeName, this.phone, address)
+//       : super(cnpj, corporateName, tradeName, address);
+
+//   void newCompany() {}
+//   void searchCompanyCnpj() {}
+//   void searchCompanyMemberCpfCnpj() {}
+//   void listCompanies() {}
+//   void delCompanyId() {}
+// }
