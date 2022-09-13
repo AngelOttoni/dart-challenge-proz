@@ -8,6 +8,7 @@ class Address {
   late String city;
   late String state;
   late String cep;
+  
   Address(
       {required this.street,
       required this.number,
