@@ -2,20 +2,26 @@
 
 import 'package:dart_challenge/address_class.dart';
 
-abstract class Partner {
-  late String _cpf;
-  late String _fullName;
+class Partner {
   late String _cnpj;
+  late String _fullName;
+  late String _cpf;
   //Razão Social
   late String _corporateName;
   //Nome Fantasia
   late String _tradeName;
   late Address address;
+  Partner(this.address);
 }
 
 //Pessoa Física
 class NaturalPerson extends Partner {
-  NaturalPerson(_cpf, _fullName, address) : super();
+  @override
+  String _cpf;
+  @override
+  String _fullName;
+
+  NaturalPerson(this._cpf, this._fullName, address) : super(address);
 
   //Getters
   String get getCpf {
@@ -26,10 +32,6 @@ class NaturalPerson extends Partner {
     return _fullName;
   }
 
-  // Address get getAddress {
-  //   return address;
-  // }
-
   //Setters
   set setarCpf(String cpf) {
     _cpf = cpf;
@@ -39,14 +41,23 @@ class NaturalPerson extends Partner {
     _fullName = fullName;
   }
 
-  // set setarAddress(Address address) {
-  //   address = address;
-  // }
+  @override
+  String toString() {
+    return "CPF: $getCpf\n Full Name: $getFullName\n Address: ${address.toString()}";
+  }
 }
 
 //Pessoa Jurídica
 class LegalPerson extends Partner {
-  LegalPerson(_cnpj, _corporateName, _tradeName, address) : super();
+  @override
+  String _cnpj;
+  @override
+  String _corporateName;
+  @override
+  String _tradeName;
+
+  LegalPerson(this._cnpj, this._corporateName, this._tradeName, address)
+      : super(address);
 
   //Getters
   String get getCnpj {
@@ -72,5 +83,10 @@ class LegalPerson extends Partner {
 
   set setarTradeName(String tradeName) {
     _tradeName = tradeName;
+  }
+
+  @override
+  String toString() {
+    return "CNPJ: $getCnpj\n Corporate Name: $getCorporateName\n Trade Name: $getTradeName\n Address: ${address.toString()}";
   }
 }
