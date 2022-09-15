@@ -3,25 +3,27 @@
 import 'package:dart_challenge/address_class.dart';
 
 class Partner {
-  late String _cnpj;
-  late String _fullName;
-  late String _cpf;
-  //Razão Social
-  late String _corporateName;
-  //Nome Fantasia
-  late String _tradeName;
+  // late String _cnpj;
+  late String _doc;
+  late String _name;
   late Address address;
-  Partner(this.address);
+  Partner(this._doc, this._name, this.address);
+  // late String _cpf;
+  // //Razão Social
+  // late String _corporateName;
+  // //Nome Fantasia
+  // late String _tradeName;
+
 }
 
 //Pessoa Física
 class NaturalPerson extends Partner {
   @override
-  String _cpf;
+  late String _cpf;
   @override
-  String _fullName;
-
-  NaturalPerson(this._cpf, this._fullName, address) : super(address);
+  late String _fullName;
+  
+  NaturalPerson(super._cpf, super.fullName, super.address);
 
   //Getters
   String get getCpf {
@@ -50,15 +52,14 @@ class NaturalPerson extends Partner {
 //Pessoa Jurídica
 class LegalPerson extends Partner {
   @override
-  String _cnpj;
+  late String _cnpj;
   @override
-  String _corporateName;
-  @override
-  String _tradeName;
+  late String _tradeName; //Nome Fantasia
 
-  LegalPerson(this._cnpj, this._corporateName, this._tradeName, address)
-      : super(address);
+  late String _corporateName; //Razão social
 
+  LegalPerson(super._cnpj, this._corporateName, super._tradeName, super.address);
+// criar um programa showpartner()
   //Getters
   String get getCnpj {
     return _cnpj;
