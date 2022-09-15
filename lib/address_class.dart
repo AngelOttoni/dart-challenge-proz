@@ -1,4 +1,4 @@
-import 'dart:html';
+//import 'dart:html';
 
 class Address {
   late String street;
@@ -8,11 +8,12 @@ class Address {
   late String city;
   late String state;
   late String cep;
-  
+
   Address(
       {required this.street,
       required this.number,
       required this.complement,
+      required this.city,
       required this.district,
       required this.state,
       required this.cep});
