@@ -1,22 +1,18 @@
-//import 'dart:html';
-
 class Address {
-  late String street;
-  late int number;
-  late String complement;
-  late String district;
-  late String city;
-  late String state;
-  late String cep;
+  String street;
+  String number;
+  String complement;
+  String district;
+  String city;
+  String state;
+  String cep;
 
-  Address(
-      {required this.street,
-      required this.number,
-      required this.complement,
-      required this.city,
-      required this.district,
-      required this.state,
-      required this.cep});
+  Address(this.street, this.number,
+      this.complement,
+      this.city,
+      this.district,
+      this.state,
+      this.cep);
 
   @override
   String toString() {
