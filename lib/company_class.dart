@@ -6,25 +6,23 @@ class Company extends LegalPerson {
   final id = Uuid().v4();
   final registrationDate = DateTime.now();
   late String _phone;
-  //Partner partner;
+  Partner partner;
 
   Company(super._cnpj, super._corporateName, super._tradeName, super.address,
-      this._phone);
+      this._phone, this.partner);
 
   //Getters
   String get getPhone {
     return _phone;
   }
+
   //Setters
+  set setarPhone(String phone) {
+    _phone = phone;
+  }
 
   @override
   String toString() {
-    return "Company Id: $id,\n CNPJ: $getCnpj,\n Registration Date: $registrationDate,\n Company: $getCorporateName,\n Trade Name: $getTradeName,\n Phone: $getPhone"; //como inserir o sócio? resolvido
+    return "Company Id: $id,\n CNPJ: $getCnpj,\n Registration Date: $registrationDate,\n Company: $getCorporateName,\n Trade Name: $getTradeName,\n Partner: ${partner.infoPartner()}\nPhone: $getPhone";
   }
-
-  // void newCompany() {}
-  // void searchCompanyCnpj() {}
-  // void searchCompanyMemberCpfCnpj() {}
-  // void listCompanies() {}
-  // void delCompanyId() {}
 }

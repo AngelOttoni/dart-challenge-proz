@@ -1,19 +1,17 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-
 import 'package:dart_challenge/address_class.dart';
+import 'package:dart_challenge/input_functions.dart';
 
 class Partner {
-  // late String _cnpj;
   late String _doc;
   late String _name;
   late Address address;
   Partner(this._doc, this._name, this.address);
-  // late String _cpf;
-  // //Razão Social
-  // late String _corporateName;
-  // //Nome Fantasia
-  // late String _tradeName;
+  //Getter
+  String get getDoc {
+    return _doc;
+  }
 
+  infoPartner() {}
 }
 
 //Pessoa Física
@@ -22,7 +20,7 @@ class NaturalPerson extends Partner {
   late String _cpf;
   @override
   late String _fullName;
-  
+
   NaturalPerson(super._cpf, super.fullName, super.address);
 
   //Getters
@@ -44,8 +42,8 @@ class NaturalPerson extends Partner {
   }
 
   @override
-  String toString() {
-    return "CPF: $getCpf\n Full Name: $getFullName\n Address: ${address.toString()}";
+  String infoPartner() {
+    return "CPF: ${Inputs.formatCpf(getCpf)}\n Full Name: $getFullName\n Address: ${address.toString()}";
   }
 }
 
@@ -58,8 +56,9 @@ class LegalPerson extends Partner {
 
   late String _corporateName; //Razão social
 
-  LegalPerson(super._cnpj, this._corporateName, super._tradeName, super.address);
-// criar um programa showpartner()
+  LegalPerson(
+      super._cnpj, this._corporateName, super._tradeName, super.address);
+
   //Getters
   String get getCnpj {
     return _cnpj;
@@ -86,8 +85,12 @@ class LegalPerson extends Partner {
     _tradeName = tradeName;
   }
 
+  String formatCnpj(String cnpj) {
+    return '${getCnpj.substring(0, 2)}.${getCnpj.substring(2, 5)}.${getCnpj.substring(5, 8)}/${getCnpj.substring(8, 12)}-${getCnpj.substring(12, 14)}';
+  }
+
   @override
-  String toString() {
-    return "CNPJ: $getCnpj\n Corporate Name: $getCorporateName\n Trade Name: $getTradeName\n Address: ${address.toString()}";
+  String infoPartner() {
+    return "Partner:\nCNPJ: ${formatCnpj(getCnpj)}\n Corporate Name: $getCorporateName\n Trade Name: $getTradeName\n Address: ${address.toString()}";
   }
 }
