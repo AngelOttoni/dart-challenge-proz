@@ -42,10 +42,6 @@ abstract class Inputs {
     return '${cpf.substring(0, 3)}.${cpf.substring(3, 6)}.${cpf.substring(6, 9)}-${cpf.substring(9)}';
   }
 
-  static String formatCnpj(String cnpj) {
-    return '${cnpj.substring(0, 2)}.${cnpj.substring(2, 5)}.${cnpj.substring(5, 8)}/${cnpj.substring(8, 12)}-${cnpj.substring(12, 14)}';
-  }
-
   static String formatPhone(String phone) {
     return '(${phone.substring(0, 2)}) ${phone.substring(2, 3)} ${phone.substring(3, 7)}-${phone.substring(7, 11)}';
   }
@@ -55,11 +51,11 @@ abstract class Inputs {
   }
 
   static Partner addPartner() {
-    String option = inputUser(
-        "Partner Registration:: \nIs the company partner a legal person (type lp) or a natural person (type np)? ");
+    int option = int.parse(inputUser(
+        "Partner Registration: \nIs the company partner a legal person (type 1) or a natural person (type 2)? "));
     late Partner newPartner;
-    switch (option.toUpperCase()) {
-      case "lp":
+    switch (option) {
+      case 1:
         newPartner = LegalPerson(
             Inputs.checkNumber("CNPJ: ", 14),
             Inputs.inputUser("Corporate Name: "),
@@ -73,7 +69,7 @@ abstract class Inputs {
                 Inputs.inputUser("State: "),
                 Inputs.checkNumber("CEP: ", 8)));
         break;
-      case "np":
+      case 2:
         newPartner = NaturalPerson(
             Inputs.checkNumber("Informe o CPF: ", 11),
             Inputs.inputUser("Informe o Nome Completo: "),
@@ -104,29 +100,20 @@ abstract class Inputs {
     stdin.readLineSync();
   }
 
-/*static infoEmpresa(Empresa empresa) {
-    print(
-        "\nID: ${empresa.id}\nCNPJ: ${Entradas.formataCNPJ(empresa.cnpj)} | Data Cadastro: ${empresa.dataCdastro}\nRazão Social: ${empresa.razaoSocial}\nNome Fantasia: ${empresa.nomeFantasia}\nTelefone: ${Entradas.formataTelefone(empresa.telefone!)}\nEndereço: ${empresa.enderecoPJ.logradouro}, ${empresa.enderecoPJ.numero}, ${empresa.enderecoPJ.bairro}, ${empresa.enderecoPJ.estado}, ${Entradas.formataCEP(empresa.enderecoPJ.cep)}\n${empresa.socio.infoSocio()}");
-  } */
   static infoCompany(Company company) {
-    print("${company.toString()}\n${company.partner.toString()}");
+    print("${company.toString()}\n${company.partner.infoPartner()}");
   }
 
-  // static List<Company> getSortedList(List<Company> companyList) {
-  //   List<Company> list = companyList;
-  //   list.sort((a, b) => a.getTradeName.compareTo(b.getTradeName));
-  //   return list;
-  // }
-
   //Listar Empresas cadastradas em ordem alfabética (baseado na Razão Social);
-  static void displayCompanyList(Company company, List<Company> companyList) {
+  static void displayCompanyList() {
+    List<Company> companyList = [];
     for (var i = 0; i < companyList.length; i++) {
       print(
           "Registered companies\n, Company ID: ${companyList[i].id},\n Registration Date: ${companyList[i].registrationDate},\n CNPJ: ${companyList[i].getCnpj},\n Company: ${companyList[i].getCorporateName},\n Trade Name: ${companyList[i].getTradeName},\n Phone: ${companyList[i].getPhone}");
     }
   }
 
-  static void companyData(companyList) {
+  static void addCompany(companyList) {
     print("Enter the following company details: ");
     Company newCompany = Company(
         Inputs.checkNumber("CNPJ: ", 14),
@@ -143,6 +130,7 @@ abstract class Inputs {
         Inputs.checkNumber("Phone: ", 11),
         Inputs.addPartner());
     companyList.add(newCompany);
+    print(companyList.toString());
   }
 
 //Buscar Empresa cadastrada por CNPJ;
@@ -174,4 +162,10 @@ abstract class Inputs {
     print("\nReturning to main menu...\n");
     mainMenu();
   }
+}
+
+String getStringValue(String description, String defaultValue) {
+  stdout.write(description);
+  String? inputUser = stdin.readLineSync();
+  return inputUser ?? defaultValue;
 }
