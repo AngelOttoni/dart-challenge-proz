@@ -1,6 +1,5 @@
 import 'package:uuid/uuid.dart';
 import 'package:dart_challenge/partner_class.dart';
-//import 'package:dart_challenge/registrationsystem_class.dart';
 
 class Company extends LegalPerson {
   final id = Uuid().v4();
@@ -8,7 +7,7 @@ class Company extends LegalPerson {
   late String _phone;
   Partner partner;
 
-  Company(super._cnpj, super._corporateName, super._tradeName, super.address,
+  Company(super._cnpj, super._corporateName, super.address, super._tradeName,
       this._phone, this.partner);
 
   //Getters

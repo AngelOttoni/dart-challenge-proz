@@ -50,14 +50,14 @@ class NaturalPerson extends Partner {
 //Pessoa Jurídica
 class LegalPerson extends Partner {
   @override
-  late String _cnpj;
+  final String _cnpj;
   @override
   late String _tradeName; //Nome Fantasia
 
   late String _corporateName; //Razão social
 
-  LegalPerson(
-      super._cnpj, this._corporateName, super._tradeName, super.address);
+  LegalPerson(this._cnpj, this._corporateName, Address address, this._tradeName)
+      : super(_cnpj, _corporateName, address);
 
   //Getters
   String get getCnpj {
@@ -73,9 +73,9 @@ class LegalPerson extends Partner {
   }
 
   //Setters
-  set setarCnpj(String cnpj) {
-    _cnpj = cnpj;
-  }
+  // set setarCnpj(String cnpj) {
+  //   _cnpj = cnpj;
+  // }
 
   set setarCorporateName(String corporateName) {
     _corporateName = corporateName;

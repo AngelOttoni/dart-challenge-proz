@@ -1,7 +1,6 @@
 import 'package:dart_challenge/input_functions.dart';
 import 'package:dart_challenge/company_class.dart';
 
-
 void mainMenu() {
   bool condition = true;
   List<Company> companyList = [];
@@ -25,7 +24,7 @@ void mainMenu() {
       case 1:
         //Cadastrar uma nova empresa;
         Inputs.addCompany(companyList);
-        Inputs.addPartner();
+        //Inputs.addPartner();
         break;
       case 2:
         //Buscar Empresa cadastrada por CNPJ;
@@ -60,5 +59,3 @@ void mainMenu() {
     }
   }
 }
-
-

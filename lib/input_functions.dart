@@ -57,17 +57,18 @@ abstract class Inputs {
     switch (option) {
       case 1:
         newPartner = LegalPerson(
-            Inputs.checkNumber("CNPJ: ", 14),
-            Inputs.inputUser("Corporate Name: "),
-            Inputs.inputUser("Trade Name: "),
-            Address(
-                Inputs.inputUser("Street: "),
-                Inputs.checkNumber("Number: ", 0),
-                Inputs.inputUser("Complement: "),
-                Inputs.inputUser("District: "),
-                Inputs.inputUser("City: "),
-                Inputs.inputUser("State: "),
-                Inputs.checkNumber("CEP: ", 8)));
+          Inputs.checkNumber("CNPJ: ", 14),
+          Inputs.inputUser("Corporate Name: "),
+          Address(
+              Inputs.inputUser("Street: "),
+              Inputs.checkNumber("Number: ", 0),
+              Inputs.inputUser("Complement: "),
+              Inputs.inputUser("District: "),
+              Inputs.inputUser("City: "),
+              Inputs.inputUser("State: "),
+              Inputs.checkNumber("CEP: ", 8)),
+          Inputs.inputUser("Trade Name: "),
+        );
         break;
       case 2:
         newPartner = NaturalPerson(
@@ -118,7 +119,6 @@ abstract class Inputs {
     Company newCompany = Company(
         Inputs.checkNumber("CNPJ: ", 14),
         Inputs.inputUser("Corporate Name: "),
-        Inputs.inputUser("Trade Name: "),
         Address(
             Inputs.inputUser("Street: "),
             Inputs.checkNumber("Number: ", 0),
@@ -127,6 +127,7 @@ abstract class Inputs {
             Inputs.inputUser("City: "),
             Inputs.inputUser("State: "),
             Inputs.checkNumber("CEP: ", 8)),
+        Inputs.inputUser("Trade Name: "),
         Inputs.checkNumber("Phone: ", 11),
         Inputs.addPartner());
     companyList.add(newCompany);

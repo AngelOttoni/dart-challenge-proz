@@ -7,12 +7,8 @@ class Address {
   String state;
   String cep;
 
-  Address(this.street, this.number,
-      this.complement,
-      this.city,
-      this.district,
-      this.state,
-      this.cep);
+  Address(this.street, this.number, this.complement, this.district, this.city,
+      this.state, this.cep);
 
   @override
   String toString() {
